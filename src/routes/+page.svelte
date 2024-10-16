@@ -1,7 +1,8 @@
 <script lang="ts">
   import { NOUNS, ADJECTIVES } from "../data/lists";
   import { onMount } from "svelte";
-  let names = [];
+  let names = new Array(20).fill("");
+  let pinnedIndicies=[];
 
   const genOneName = () => {
     let adjective = ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)];
@@ -10,19 +11,32 @@
   };
 
   const handleGenerate = () => {
-    names = []; //new Array(20).fill(0).map(genOneName);
+    // Reset the names array
+    names=names.map((x,i)=>
+      pinnedIndicies.indexOf(i)>-1?x:""
+    )
+    
+    // Generate 20 new names
+    
   };
 
   onMount(() => {
     window.setInterval(() => {
-      if (names.length < 20) {
-        names = [ ...names.slice(0, names.length),genOneName(),];
-      }
-    }, 1000/60);
+      names[names.indexOf("")] = genOneName();
+    }, 1000 / 60);
   });
 
   const copy = (str) => {
     navigator.clipboard.writeText(str);
+  };
+
+  const pin = (name) => {
+    const index=names.indexOf(name);
+    if(pinnedIndicies.indexOf(index)>-1){
+      pinnedIndicies=pinnedIndicies.filter(x=>x!==index);
+    }else{
+      pinnedIndicies.push(index);
+    }
   };
 </script>
 
@@ -32,10 +46,16 @@
 <ul>
   {#each names as name}
     <li>
-        <button
-          on:click={() => {
-            copy(name);
-          }}>📋</button>
+      <button
+        on:click={() => {
+          pin(name);
+        }}>📍</button
+      >
+      <button
+        on:click={() => {
+          copy(name);
+        }}>📋</button
+      >
       <span>{name}</span>
     </li>
   {/each}
