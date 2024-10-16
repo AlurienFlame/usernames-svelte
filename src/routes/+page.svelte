@@ -97,6 +97,7 @@
     gap: 0.25rem;
     display: flex;
     flex-direction: column;
+    min-width: 30ch;
   }
   .pinned {
     filter: brightness(0.7);
