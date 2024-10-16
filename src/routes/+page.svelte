@@ -1,8 +1,7 @@
 <script lang="ts">
   import { NOUNS, ADJECTIVES } from "../data/lists";
   import { onMount } from "svelte";
-  let names = new Array(20).fill("");
-  let pinnedIndicies=[];
+  let names = new Array(20).fill("").map(text=>({text,pinned:false}));
 
   const genOneName = () => {
     let adjective = ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)];
@@ -11,18 +10,17 @@
   };
 
   const handleGenerate = () => {
-    // Reset the names array
-    names=names.map((x,i)=>
-      pinnedIndicies.indexOf(i)>-1?x:""
-    )
-    
-    // Generate 20 new names
-    
+    // Reset the unpinned names in array
+    names.forEach((name) => {
+      if (!name.pinned) {
+        name.text = "";
+      }
+    });
   };
 
   onMount(() => {
     window.setInterval(() => {
-      names[names.indexOf("")] = genOneName();
+      names[names.findIndex(({text})=>text==="")].text = genOneName();
     }, 1000 / 60);
   });
 
@@ -31,12 +29,7 @@
   };
 
   const pin = (name) => {
-    const index=names.indexOf(name);
-    if(pinnedIndicies.indexOf(index)>-1){
-      pinnedIndicies=pinnedIndicies.filter(x=>x!==index);
-    }else{
-      pinnedIndicies.push(index);
-    }
+    name.pinned = !name.pinned;
   };
 </script>
 
@@ -53,10 +46,10 @@
       >
       <button
         on:click={() => {
-          copy(name);
+          copy(name.text);
         }}>📋</button
       >
-      <span>{name}</span>
+      <span>{name.text}</span>
     </li>
   {/each}
 </ul>
