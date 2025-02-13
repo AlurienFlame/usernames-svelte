@@ -29,7 +29,11 @@ export const ADJECTIVES = [
     "Sacred",
     "Relentless",
     "Unceasing",
-    "Unrelenting"
+    "Unrelenting",
+    "Cryptic",
+    "False",
+    "Blasphemous",
+    "Fractal",
 ]
 
 export const NOUNS = [
@@ -65,5 +69,11 @@ export const NOUNS = [
     "Beast",
     "Star",
     "Waves",
-    "Tide"
+    "Tide",
+    "Clarity",
+    "Blasphemy",
+    "Prophet",
+    "Facsimile",
+    "Egregore",
+    "Echo"
 ]
