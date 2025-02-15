@@ -47,6 +47,7 @@ export const ADJECTIVES = [
     "Imitation",
     "Emulated",
     "Imagined",
+    "Whispered",
     // Association: Bestial
     "Wild",
     // Association: Oceanic
@@ -106,6 +107,7 @@ export const NOUNS = [
     // Association: Godly
     "Apotheosis",
     "Prophet",
+    "Prophecy",
     // Association: Blasphemous
     "Blasphemy",
     // Association: Memetic
