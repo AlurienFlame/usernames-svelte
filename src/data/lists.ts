@@ -36,6 +36,7 @@ export const ADJECTIVES = [
     "Perfect",
     "Divine",
     "Sacred",
+    "Numinous",
     // Association: Blasphemous
     "Infernal",
     "Blasphemous",
@@ -108,6 +109,7 @@ export const NOUNS = [
     "Apotheosis",
     "Prophet",
     "Prophecy",
+    "Numina",
     // Association: Blasphemous
     "Blasphemy",
     // Association: Memetic
